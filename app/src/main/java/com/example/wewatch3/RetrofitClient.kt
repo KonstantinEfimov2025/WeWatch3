@@ -4,6 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
+    // Важно использовать https
     private const val BASE_URL = "https://www.omdbapi.com/"
 
     val instance: MovieApiService by lazy {

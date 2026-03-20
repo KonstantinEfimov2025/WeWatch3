@@ -1,4 +1,4 @@
-package com.example.wewatch3
+package com.example.wewatch3 // Проверь, чтобы тут была 3!
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,16 +8,19 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.wewatch.ui.theme.WeWatchTheme
+import com.example.wewatch3.ui.theme.WeWatch3Theme // Тут тоже проверь имя темы
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Инициализация БД и ViewModel
         val database by lazy { MovieDatabase.getDatabase(this) }
         val viewModel: MovieViewModel by viewModels { MovieViewModelFactory(database.movieDao()) }
 
         setContent {
-            WeWatchTheme {
+            // Название темы должно совпадать с тем, что в папке ui.theme
+            WeWatch3Theme {
                 WeWatchApp(viewModel)
             }
         }
@@ -40,7 +43,11 @@ fun WeWatchApp(viewModel: MovieViewModel) {
         }
         composable("add") {
             AddScreen(viewModel,
-                onMovieAdded = { navController.navigate("main") { popUpTo("main") { inclusive = true } } },
+                onMovieAdded = {
+                    navController.navigate("main") {
+                        popUpTo("main") { inclusive = true }
+                    }
+                },
                 onBack = { navController.popBackStack() }
             )
         }
